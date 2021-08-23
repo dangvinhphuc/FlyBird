@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+
+<body>
+
+    <canvas id="myCanvas" width="852" height="480"></canvas>
+
+    <script>
+        let paper = document.getElementById("myCanvas");
+        let pen = paper.getContext("2d");
+
+        let nen = new Image();
+        nen.src = "Imgs/nen_1.jpg";
+        nen.onload = function () {
+            pen.drawImage(nen, 0, 0);
+
+        }
+
+        let chim8p = new Image();
+        chim8p.src = "Imgs/chim_2_phai.png"
+        let rong8p = 928;
+        let cao8p = 465;
+        let rong8p_ht = 160;
+        let cao8p_ht = 80;
+        let cot8p = 3;
+        let dong8p = 2;
+        let cot = 0;
+        let dong = 0;
+        let x = ngauNhien(0, 852);
+        let y = 350;
+        let c = soAm() * ngauNhien(0, 10);
+        let d = ngauNhien(-10, 0);
+
+
+
+
+        function veAnh(a, b) {
+            pen.clearRect(x - c, y - d, rong8p_ht / cot8p, cao8p_ht / dong8p);
+            pen.drawImage(chim8p, rong8p / cot8p * cot, cao8p / dong8p * dong, rong8p / cot8p, cao8p / dong8p, x, y, rong8p_ht / cot8p, cao8p_ht / dong8p);
+            x = x + c;
+            y = y + d;
+            if (cot < cot8p - 1) {
+                cot++;
+            }
+            else {
+                cot = 0;
+                if (dong < dong8p - 1) {
+                    dong++;
+                }
+                else {
+                    dong = 0;
+                }
+            }
+        }
+
+        setInterval(veAnh, 150);
+
+
+        function ngauNhien(min, max) {
+            return Math.floor(Math.random() * (max + 1)) + min;
+        }
+
+        function soAm() {
+            if (Math.random() < 0.5) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+
+
+</html>
